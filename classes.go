@@ -11,11 +11,12 @@ import (
 
 type Class struct {
 	Start   int
+	Day     string
 	Name    string
 	Room    string
 	Teacher string
-	Id      string
-	Url     string
+	ID      string
+	URL     string
 }
 
 type Block struct {
@@ -68,6 +69,7 @@ func ParseClasses(htmlSnippet string) ([]Class, error) {
 	var classes []Class
 
 	doc.Find("div.rozvrh_tyzden").Each(func(_ int, daySelection *goquery.Selection) {
+		currentDay := strings.TrimSpace(daySelection.Find("div.rozvrh_nazov").Text())
 		blockIndex := 0
 		daySelection.Children().Each(func(_ int, s *goquery.Selection) {
 			if s.HasClass("rozvrh_nazov") {
@@ -95,11 +97,12 @@ func ParseClasses(htmlSnippet string) ([]Class, error) {
 
 					classes = append(classes, Class{
 						Start:   blockIndex,
+						Day:     currentDay,
 						Name:    name,
 						Room:    room,
 						Teacher: teacher,
-						Id:      trimmedID,
-						Url:     href,
+						ID:      trimmedID,
+						URL:     href,
 					})
 				})
 			}

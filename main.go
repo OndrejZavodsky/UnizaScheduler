@@ -18,7 +18,7 @@ func main() {
 	}
 
 	for _, c := range classes {
-		fmt.Printf("Block %2d | Class: %-8s | Room: %-6s | Teacher: %-18s | ID: %s\n",
-			c.Start, c.Name, c.Room, c.Teacher, c.Id)
+		fmt.Printf("Day %s | Block %2d | Class: %-8s | Room: %-6s | Teacher: %-18s | ID: %s\n",
+			c.Day, c.Start, c.Name, c.Room, c.Teacher, c.ID)
 	}
 }
