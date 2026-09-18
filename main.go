@@ -16,9 +16,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error parsing classes: %v", err)
 	}
-
-	for _, c := range classes {
+	blocks := TransformClassesIntoBlocks(classes)
+	for _, b := range blocks {
 		fmt.Printf("Day %s | Block %2d | Class: %-8s | Room: %-6s | Teacher: %-18s | ID: %s\n",
-			c.Day, c.Start, c.Name, c.Room, c.Teacher, c.ID)
+			b.Classes[0].Day, b.Classes[0].Start, b.Classes[0].Name, b.Classes[0].Room, b.Classes[0].Teacher, b.Classes[0].ID)
 	}
 }
